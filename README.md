@@ -1,1 +1,1 @@
-# react18-with-rtk
+# mern-recipe-app
