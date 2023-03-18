@@ -16,13 +16,14 @@ export const register = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ username, password: hashedPassword });
         await newUser.save();
+
         res.status(201).json({ message: 'User registered successfully!' });
     } catch (err) {
         next(err);
     }
 }
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
     const { username, password } = req.body;
 
     try {
@@ -30,20 +31,25 @@ export const login = async (req, res) => {
 
         if (!user) {
             return res
-              .status(400)
-              .json({ message: 'Username or password is incorrect!' });
-          }
+              .status(404)
+              .json({ message: 'User does not exist!' });
+        }
 
-          const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
 
-          if (!isPasswordValid) {
+        if (!isPasswordValid) {
             return res
-              .status(400)
-              .json({ message: 'Username or password is incorrect!' });
-          }
+              .status(401)
+              .json({ message: 'Password is incorrect!' });
+        }
 
-          const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-          res.status(200).json({ token, userID: user._id });
+        const token = jwt.sign(
+            { id: user._id }, 
+            process.env.JWT_SECRET, 
+            { expiresIn: '1d' }
+        );
+          
+        res.status(200).json({ token, userId: user._id });
     } catch (err) {
         next(err);
     }

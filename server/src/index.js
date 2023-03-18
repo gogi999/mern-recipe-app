@@ -27,7 +27,7 @@ app.use(cors({
     credentials: true,
 }));
 
-app.use('/api/v1/users', usersRouter);
+app.use('/auth', usersRouter);
 
 app.listen(port, () => {
     connectDB();
