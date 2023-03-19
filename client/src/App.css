@@ -85,7 +85,8 @@ span {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: white;
+  background-color: rgb(54, 9, 106);
+  color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: 20px;
@@ -131,10 +132,34 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  border: 0.5px solid whitesmoke;
+  border: 0.3px solid black;
   border-radius: 5px;
   background-color: rgb(121, 14, 55);
   color: white;
   cursor: pointer;
   font-size: 21px;
+}
+
+.save-btn {
+  display: block;
+  margin: 0 auto;
+  width: 120px;
+  border: 0.3px solid black;
+  border-radius: 5px;
+  background-color: rgb(54, 9, 106);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.recipe-title {
+  text-align: center;
+}
+
+.recipe-container {
+  border-radius: 5px;
+}
+
+.saved {
+  text-align: center;
 }

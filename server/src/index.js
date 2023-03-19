@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
+import recipesRouter from './routes/recipes.routes.js';
 import usersRouter from './routes/users.routes.js';
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(cors({
 }));
 
 app.use('/auth', usersRouter);
+app.use('/recipes', recipesRouter);
 
 app.listen(port, () => {
     connectDB();

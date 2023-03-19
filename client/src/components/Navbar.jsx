@@ -24,15 +24,17 @@ const Navbar = () => {
             <Link to="/create-recipe">
                 Create Recipe
             </Link>
-            <Link to="/saved-recipes">
-                Saved Recipes
-            </Link>
             {!cookies .access_token ? (
                 <Link to="/auth">
                     Login / Register
                 </Link>
             ) : (
-                <span onClick={logout}>Logout</span>
+                <>
+                    <Link to="/saved-recipes">
+                        Saved Recipes
+                    </Link>
+                    <span onClick={logout}>Logout</span>
+                </>
             )}
         </div>
     );
